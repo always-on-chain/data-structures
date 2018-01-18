@@ -3,28 +3,27 @@ var Stack = function() {
 
   // Use an object with numeric keys to store values
   var storage = {};
+  var count = 0;
 
   // Implement the methods below
   someInstance.push = function(value) {
-    var size = Object.keys(storage).length;
-    storage[size] = value;
+    storage[count] = value;
+    count++;
   };
 
   someInstance.pop = function() {
-    var size = Object.keys(storage).length - 1;
-    var value = storage[size];
-    delete storage[size];
+    if (count === 0) {
+      return;
+    }
+    count--;
+    var value = storage[count];
+    delete storage[count];
+    
     return value;
   };
 
   someInstance.size = function() {
-    var size = Object.keys(storage).length;
-    return size;
-  };
-
-  someInstance.sequentialAdd = function(value) {
-    var savedValue = value;
-    return savedValue;
+    return count;
   };
 
   return someInstance;
